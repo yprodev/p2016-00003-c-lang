@@ -149,46 +149,70 @@ main(){
 	int myIncrementor = 1, myMultiplier = 1,
 			finalValue = 1;
 
+	// Here we try to automate the process of discovering
+	// how many bits we need for our integer inputs
+	while(myIncrementor < numberHowBig){
+		myMultiplier *= 2;
+		finalValue = finalValue + myMultiplier;
+		myIncrementor++;
+	}
+
+	if((numberHowBig == 0) || (numberHowBig == 1)){
+		printf("Top Value: %d\n\n", numberHowBig);
+	} else {
+		printf("Top Value: %d\n\n", finalValue);
+	}
+
+
+	int secretNumber = 10, numberGuessed = 0;
 
 
 
+	// WHILE LOOP
+	// This is an infinite loop
+	while(1){
+		printf("Guess my secret number: \n\n");
+		scabf(" %d", &numberGuessed);
+
+		if(numberGuessed == secretNumber){
+			printf("You got it!");
+			break;
+		}
+	}
 
 
 
+	// DO WHILE LOOP
+	char sizeOfShirt;
+
+	do{
+		printf("What size of shirt (S, M, L): \n\n");
+		scanf(" %c", &sizeOfShirt);
+	}while(sizeOfShirt != 'S' && sizeOfShirt != 'M' && sizeOfShirt != 'L');
 
 
 
+	// FOR LOOP
+	// Use for loop when you know exactly how many times
+	// you need to go through the loop
+	// for(define incrementor; define condition; increment) { code here }
 
+	for(int counter = 0; counter <= 20; counter++) {
+		printf(" %d\n\n", counter);
+	}
 
+	// WARNING: defining incrementor like in the examle
+	// we can do only in C v99 or above
+	// and to compile this code we should type this to the compiler
+	// gcc -std=c99 lesson2.c -o LoopsLesson
+	// Also in v99 of C Language main MUST HAVE a return type ---> void main() {}
+	// the word void before the main function
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	// Printing only odd numbers
+	for(int counter = 0; counter <= 40; counter++) {
+		if((counter % 2) == 0) continue;
+		printf(" %d\n\n", counter);
+	}
 
 
 
