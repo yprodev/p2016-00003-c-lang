@@ -5,6 +5,7 @@
 
 // Need for exit()
 #include <stdlib.h>
+#include <string.h>
 
 void main(){
 
@@ -94,9 +95,67 @@ void main(){
 	// 3. Standard input (your keyboard)
 	printf("Hello %s\n\n", yourCity);
 
+	// We are getting rid of the new line at the end of the string
+	for(int i = 0; i < 30; i++) {
+		// We find the last charachter of the string
+		if(yourCity[i] == '\n'){
+			// We are correcting the situations and add null value at the end of the string
+			yourCity[i] = '\0';
+			// After that we are breaking the loop, because we've already found what we wanted
+			break;
+		}
+	}
+
+	printf("Hello %s\n\n", yourCity);
 
 
+	// STRING COMPARE - strcmp()
+	// It is gonna to take two strings and it is going to return a negative number
+	// if the first string is less then the second, and it's going to return the
+	// positive number, if the opposite occurs. And it's going to return zero
+	// if the strings are equal.
+	// To use this function we should add new include statement #include <string.h>
 
+	printf("Is your city Paris? %d\n\n", strcmp(yourCity, thirdCity));
+
+	// STRING CONCATINATE - strcat()
+	char yourState[] = ", Pennsylvania";
+	strcat(yourCity, yourState);
+	printf("You live in %s\n\n", yourCity);
+
+
+	// STRING LENGTH - strlen()
+	// It is gonna return the length of a string MINUS the null character at the end
+	// JUST the length of the letters
+	printf("Letters in Paris : %d\n\n", strlen(thirdCity));
+
+
+	// STRING COPY
+	// We DON'T want to use string copy, because it can cause overrides in the memory.
+	// Some if you want to do string copy in the safe way use - strlcpy() - string left copy
+	strlcpy(yourCity,
+		"El Pueblo del la Reina de Los Angeles",
+		sizeof(yourCity));
+
+	printf("New city is: %s\n\n", yourCity);
+
+
+	// GLOBAL VARIABLES
+	// Global variable is the variable that is outside of the any other function
+	// So now we are going to create return type functions. This type of functions
+	// don't have 'void' word before the function declaration
+	// This function needs to be in the other file to call it then from the main
+	// function. But nuw it is already in the main function and in the same file,
+	// so while we are experementing with C language, it doesn't matter.
+
+	int globalVar = 0;
+	int addTwoInts(int num1, int num2){
+		return num1 + num2;
+	}
+
+	// this part we should put in the main function
+	int total = addTwoInts(4, 5);
+	printf("The sum is %d\n\n", total);
 
 
 
