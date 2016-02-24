@@ -86,6 +86,9 @@ void outputData(){
 
 }
 
+// We are going to create global for the function productToDelete
+struct product *pProductBeforeProductToDelete = NULL;
+
 // This function is going to return struct because then we are going to find and
 // delete set product. It is going to receive product name
 //
@@ -110,6 +113,12 @@ struct product* searchForProduct(char * productName){
 			return pProductIterator;
 		}
 
+		// We are assigning pProductBeforeProductToDelete before pProductIterator
+		// will change it's value.
+		pProductBeforeProductToDelete = pProductIterator;
+		// We are changing the pProductIterator to the next product
+		pProductIterator = pProductIterator->next;
+
 	}
 
 	printf("%s wasn't found\n\n", productName);
@@ -117,6 +126,28 @@ struct product* searchForProduct(char * productName){
 	return NULL;
 }
 
+void removeProduct(char * productName){
+	struct product *pProductToDelete = NULL;
+	pProductToDelete = searchForProduct(productName);
+	if(pProductToDelete != NULL){
+		printf("%s was deleted\n\n", productName);
+		// And if this product is the first product in our list
+		// and we want it to delete we must define the next product in the list
+		// to the first node.
+		if(pProductToDelete == pFirstNode){
+			pFirstNode = pProductToDelete->next;
+		} else {
+			// We need to got pProductToDelete and assigned it next to the product
+			// that before the product is deleted
+			pProductBeforeProductToDelete->next = pProductToDelete->next;
+		}
+
+		free(pProductToDelete);
+	} else {
+		// If we did not find a product
+		printf("%s was not found", productName);
+	}
+}
 
 
 int main(){
@@ -127,7 +158,9 @@ int main(){
 
 	outputData();
 
-	searchForProduct("Tomato");
+	removeProduct("Tomato");
+
+	outputData();
 
 	return 0;
 }
